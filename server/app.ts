@@ -33,6 +33,7 @@ app.get('/api/', async (_, res: Response) => {
 });
 
 app.post('/api/', async(req: Request, res: Response) => {
+  console.log(req.body)
   try {
     if (dataSet) {
       const apiData = await fetch(uri)
@@ -47,7 +48,14 @@ app.post('/api/', async(req: Request, res: Response) => {
     } else {
       const apiData = await fetch(uri)
       const response = await apiData.json()
+      const newUser = {
+        id: response.team.length + 1,
+        name: req.body.username.charAt(0).toUpperCase() + req.body.username.slice(1),
+        email: req.body.useremail
+      }
+      response.team.push(newUser)
       dataSet = response;
+      return res.status(200).send(dataSet)
     }
   } catch (err) {
     return res.status(404).send('Error reading data file')
