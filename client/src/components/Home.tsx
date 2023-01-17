@@ -8,7 +8,6 @@ const Home = () => {
     const [localstorage, setLocalstorage] = useState<string | undefined>()
 
     useEffect(() => {
-        console.log('insdie effect')
         if(users) {
             localStorage.setItem('users', JSON.stringify(users || []));
         }
@@ -29,7 +28,7 @@ const Home = () => {
         fetchUsers()
         }
     }, [localstorage])
-    console.log(users)
+
   return (
     <section className='container flex h-screen'>
         <article className='bg-cogs flex justify-center flex-col w-64'>

@@ -33,7 +33,6 @@ app.get('/api/', async (_, res: Response) => {
 });
 
 app.post('/api/', async(req: Request, res: Response) => {
-  console.log(req.body)
   try {
     if (dataSet) {
       const apiData = await fetch(uri)
